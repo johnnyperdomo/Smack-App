@@ -25,4 +25,8 @@ class LoginVC: UIViewController {
         dismiss(animated: true, completion: nil) //this closes the login VC by clicking on the Close Button(x)
     }
     
+    @IBAction func createAccountBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: TO_CREATE_ACCOUNT, sender: nil) //when createAccountBtn is pressed, we go to the CreateAccountVC
+    }
+    
 }
