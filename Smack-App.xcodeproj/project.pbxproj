@@ -19,6 +19,7 @@
 		FE449BC9200AFDC100325399 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE449BC8200AFDC100325399 /* ChatVC.swift */; };
 		FE449BCB200AFDD600325399 /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE449BCA200AFDD600325399 /* ChannelVC.swift */; };
 		FE9D891820066E72009F9CB1 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9D891720066E72009F9CB1 /* SWRevealViewController.m */; };
+		FEE8E06120115EF9008EFC8D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE8E06020115EF9008EFC8D /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		FE9D891520066E6F009F9CB1 /* Smack-App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smack-App-Bridging-Header.h"; sourceTree = "<group>"; };
 		FE9D891620066E71009F9CB1 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		FE9D891720066E72009F9CB1 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		FEE8E06020115EF9008EFC8D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 		FE3D5DAE1FFC837200B17B10 /* Smack-App */ = {
 			isa = PBXGroup;
 			children = (
+				FEE8E05F20115EBC008EFC8D /* Services */,
 				FE28CC85200CE95C00CA2E5E /* Utilities */,
 				FE449BC7200AFD9700325399 /* Model */,
 				FE449BC6200AFD9100325399 /* View */,
@@ -148,6 +151,14 @@
 				FE9D891520066E6F009F9CB1 /* Smack-App-Bridging-Header.h */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FEE8E05F20115EBC008EFC8D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FEE8E06020115EF9008EFC8D /* AuthService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +289,7 @@
 				FE449BCB200AFDD600325399 /* ChannelVC.swift in Sources */,
 				FE449BC9200AFDC100325399 /* ChatVC.swift in Sources */,
 				FE28CC8B200D06DC00CA2E5E /* CreateAccountVC.swift in Sources */,
+				FEE8E06120115EF9008EFC8D /* AuthService.swift in Sources */,
 				FE28CC89200CFE9B00CA2E5E /* LoginVC.swift in Sources */,
 				FE241D23200C486700D5CF27 /* GradientView.swift in Sources */,
 				FE3D5DB01FFC837200B17B10 /* AppDelegate.swift in Sources */,
