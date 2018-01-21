@@ -12,7 +12,8 @@ typealias CompletionHandler = (_ Success: Bool) -> () //type alias is renaming a
 
 //URL Constants
 let BASE_URL = "https://chatexample1.herokuapp.com/v1/" //this is the url to where the webrequest is being sent to. this is the url for where our app is being hosted online
-let URL_REGISTER = "\(BASE_URL)account/register"
+let URL_REGISTER = "\(BASE_URL)account/register" //url for specific api location, so api what to do with this information
+let URL_LOGIN = "\(BASE_URL)account/login"
 
 //segues
 let TO_LOGIN = "toLogin" //this sets a constant to the segue we need for the LoginVC from the ChannelVC
@@ -24,3 +25,10 @@ let UNWIND_TO_CHANNEL = "unwindToChannelVC" //to unwind from CreateAccountVC to 
 let TOKEN_KEY = "token"
 let LOGGED_IN_KEY = "loggedIn"
 let USER_EMAIL = "userEmail" 
+
+//headers
+
+let HEADER = [
+    "Content-Type": "application/json; charset = utf-8" //web requests usually need a header, this is what it consists of
+]
+
