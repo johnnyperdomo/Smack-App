@@ -16,6 +16,10 @@ class CreateAccountVC: UIViewController {
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var userImg: UIImageView!
     
+    //variables
+    var avatarName = "profileDefault" //default image if no one picks an avatar
+    var avatarColor = "[0.5, 0.5, 0.5, 1]" //default light grey color if no one chooses
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,17 +28,21 @@ class CreateAccountVC: UIViewController {
     }
     
     @IBAction func createAccountPressed(_ sender: Any) {
-        guard let email = emailTxt.text , emailTxt.text != "" else //guard statements are another way of unwrapping optionals
-        { return }
+        guard let name = usernameTxt.text , usernameTxt.text != "" else { return }
+        guard let email = emailTxt.text , emailTxt.text != "" else { return } //guard statements are another way of unwrapping optionals
+        guard let password = passwordTxt.text , passwordTxt.text != "" else { return } //the .text is an optional, we have to unwrap it
         
-        guard let password = passwordTxt.text , passwordTxt.text != "" else //the .text is an optional, we have to unwrap it
-        { return }
         
         AuthService.instance.registerUser(email: email, password: password) { (success) in //we passed the values into the Authservice to register a user
             if success {
                 AuthService.instance.loginUser(email: email, password: password, completion: { (success) in
                     if success {
-                        print("logged in user!", AuthService.instance.authToken)
+                        AuthService.instance.createUser(name: name, email: email, avatarName: self.avatarName, avatarColor: self.avatarColor, completion: { (success) in
+                            if success {
+                                print(UserDataService.instance.name, UserDataService.instance.avatarName)
+                                self.performSegue(withIdentifier: UNWIND_TO_CHANNEL, sender: nil)
+                            }
+                        })
                     }
                 })
             }
