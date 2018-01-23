@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7E1D4300F917A5B43297B8C6 /* Pods_Smack_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77337685E014DAC7AF4EE860 /* Pods_Smack_App.framework */; };
 		FE241D23200C486700D5CF27 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE241D22200C486700D5CF27 /* GradientView.swift */; };
+		FE288B7B2016AD2B0059CB54 /* AvatarPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE288B7A2016AD2B0059CB54 /* AvatarPickerVC.swift */; };
+		FE288B7D2016AFF60059CB54 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE288B7C2016AFF60059CB54 /* AvatarCell.swift */; };
 		FE28CC87200CE98300CA2E5E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28CC86200CE98300CA2E5E /* Constants.swift */; };
 		FE28CC89200CFE9B00CA2E5E /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28CC88200CFE9B00CA2E5E /* LoginVC.swift */; };
 		FE28CC8B200D06DC00CA2E5E /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28CC8A200D06DC00CA2E5E /* CreateAccountVC.swift */; };
@@ -29,6 +31,8 @@
 		77337685E014DAC7AF4EE860 /* Pods_Smack_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smack_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B4082324BBD8A38A947B7F /* Pods-Smack-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smack-App/Pods-Smack-App.debug.xcconfig"; sourceTree = "<group>"; };
 		FE241D22200C486700D5CF27 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		FE288B7A2016AD2B0059CB54 /* AvatarPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerVC.swift; sourceTree = "<group>"; };
+		FE288B7C2016AFF60059CB54 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		FE28CC86200CE98300CA2E5E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FE28CC88200CFE9B00CA2E5E /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		FE28CC8A200D06DC00CA2E5E /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 				FE449BCA200AFDD600325399 /* ChannelVC.swift */,
 				FE28CC88200CFE9B00CA2E5E /* LoginVC.swift */,
 				FE28CC8A200D06DC00CA2E5E /* CreateAccountVC.swift */,
+				FE288B7A2016AD2B0059CB54 /* AvatarPickerVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 			children = (
 				FE241D22200C486700D5CF27 /* GradientView.swift */,
 				FEE8E0622011ABBA008EFC8D /* RoundedButton.swift */,
+				FE288B7C2016AFF60059CB54 /* AvatarCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE449BCB200AFDD600325399 /* ChannelVC.swift in Sources */,
+				FE288B7B2016AD2B0059CB54 /* AvatarPickerVC.swift in Sources */,
 				FEE8E0632011ABBA008EFC8D /* RoundedButton.swift in Sources */,
 				FE449BC9200AFDC100325399 /* ChatVC.swift in Sources */,
 				FE55C82720165CBF000379A8 /* UserDataService.swift in Sources */,
@@ -300,6 +307,7 @@
 				FEE8E06120115EF9008EFC8D /* AuthService.swift in Sources */,
 				FE28CC89200CFE9B00CA2E5E /* LoginVC.swift in Sources */,
 				FE241D23200C486700D5CF27 /* GradientView.swift in Sources */,
+				FE288B7D2016AFF60059CB54 /* AvatarCell.swift in Sources */,
 				FE3D5DB01FFC837200B17B10 /* AppDelegate.swift in Sources */,
 				FE9D891820066E72009F9CB1 /* SWRevealViewController.m in Sources */,
 				FE28CC87200CE98300CA2E5E /* Constants.swift in Sources */,
