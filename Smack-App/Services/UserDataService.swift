@@ -29,7 +29,7 @@ class UserDataService {
         self.name = name
     }
     
-    func setAvatarName(avatarName: String) { //to update the avatarName later
+    func setAvatarName(avatarName: String) { //to update the avatarName 
         self.avatarName = avatarName
     }
     

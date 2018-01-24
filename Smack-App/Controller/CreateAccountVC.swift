@@ -23,8 +23,13 @@ class CreateAccountVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) { //if name is not empty, it adds the avatar image
+        if UserDataService.instance.avatarName != "" {
+            userImg.image = UIImage(named: UserDataService.instance.avatarName)
+            avatarName = UserDataService.instance.avatarName //makes the variable we made here for avatarName = the avatarName used in the dataservice
+        }
     }
     
     @IBAction func createAccountPressed(_ sender: Any) {
