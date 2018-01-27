@@ -16,6 +16,12 @@ let URL_REGISTER = "\(BASE_URL)account/register" //url for specific api location
 let URL_LOGIN = "\(BASE_URL)account/login"
 let URL_USER_ADD = "\(BASE_URL)user/add"
 
+// Colors
+let SMACK_PURPLE_PLACE_HOLDER = #colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 0.5) //this is going to be for the color of the placeHolder text in the CreateAccountVC
+
+//Notification
+let NOTIFICATION_USER_DATA_DID_CHANGE = Notification.Name("notificationUserDataChanged") //to send a notification depending on whether you log in/out
+
 //segues
 let TO_LOGIN = "toLogin" //this sets a constant to the segue we need for the LoginVC from the ChannelVC
 let TO_CREATE_ACCOUNT = "toCreateAccount" //constant for the segue from loginvc to CreateAccountVC

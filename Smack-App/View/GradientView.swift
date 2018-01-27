@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable //lets it know, this file needs to render inside the story board
 class GradientView: UIView {
     
-    @IBInspectable var topColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1) { // @IBInspectable, lets you change the properties in the app
+    @IBInspectable var topColor: UIColor = #colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 1) { // @IBInspectable, lets you change the properties in the app
         didSet { //when we set the new uicolor, didset
             self.setNeedsLayout() //invalidates current layout, and updates it to whatever you chose
         }

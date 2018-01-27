@@ -17,7 +17,7 @@ class ChannelVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+ 
         self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 60 //this is the width of the reveal view when its open..../{the rear view should take all of the screen size, except 60 points}
     }
     
