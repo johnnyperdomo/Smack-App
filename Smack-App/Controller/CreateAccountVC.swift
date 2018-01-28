@@ -32,7 +32,7 @@ class CreateAccountVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) { //if name is not empty, it adds the avatar image
         if UserDataService.instance.avatarName != "" {
             userImg.image = UIImage(named: UserDataService.instance.avatarName)
-            avatarName = UserDataService.instance.avatarName //makes the variable we made here for avatarName = the avatarName used in the dataservice
+            avatarName = UserDataService.instance.avatarName //makes the variable we made here for avatarName = the avatarName used in the userdataservice
             if avatarName.contains("light") && bgColor == nil { //if you haven't selected a bgColor yet for the userImg and if you choose a "light" avatar, make the userImg bgColor lightgrey
                 userImg.backgroundColor = UIColor.lightGray
             }
@@ -78,6 +78,7 @@ class CreateAccountVC: UIViewController {
         let b = CGFloat(arc4random_uniform(255)) / 255 //to make a random number with the colors
         
         bgColor = UIColor(red: r, green: g, blue: b, alpha: 1) //alpha : 1, means the value is not transparent
+        avatarColor = "[\(r), \(g), \(b), 1]" //sets the new bgColor to the avatarColor in UserDataService
         UIView.animate(withDuration: 0.2) { //this is to give animation to the changing of the bgColor
             self.userImg.backgroundColor = self.bgColor
         }

@@ -136,6 +136,7 @@
                     </view>
                     <connections>
                         <outlet property="loginBtn" destination="Bun-DU-cf9" id="9zV-mv-ayd"/>
+                        <outlet property="userImg" destination="P59-fw-U8R" id="T73-pB-eLC"/>
                         <segue destination="icF-g7-GMB" kind="show" identifier="toLogin" id="KLi-Wr-e6X"/>
                     </connections>
                 </viewController>
