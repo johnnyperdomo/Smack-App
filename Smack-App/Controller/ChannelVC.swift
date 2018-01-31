@@ -25,7 +25,14 @@ class ChannelVC: UIViewController {
     }
     
     @IBAction func loginBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: TO_LOGIN, sender: nil) //when Btn is pressed, go to login page
+        if AuthService.instance.isLoggedIn { //if logged in, show the profile page when clicking on button
+            let profile = ProfileVC() //this is to present the profileVC since its a xib file, but not on story board
+            profile.modalPresentationStyle = .custom
+            present(profile, animated: true, completion: nil)
+            
+        } else {
+            performSegue(withIdentifier: TO_LOGIN, sender: nil) //if not logged in, when Btn is pressed, go to login page
+        }
     }
     
      @objc func userDataDidChange(_ notification: Notification) { //if notification is posted and we receive it, we will call this function as stated above
