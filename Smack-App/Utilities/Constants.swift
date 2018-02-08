@@ -13,9 +13,10 @@ typealias CompletionHandler = (_ Success: Bool) -> () //type alias is renaming a
 //URL Constants
 let BASE_URL = "https://chatexample1.herokuapp.com/v1/" //this is the url to where the webrequest is being sent to. this is the url for where our app is being hosted online
 let URL_REGISTER = "\(BASE_URL)account/register" //url for specific api location, so api what to do with this information
-let URL_LOGIN = "\(BASE_URL)account/login"
+let URL_LOGIN = "\(BASE_URL)account/login" 
 let URL_USER_ADD = "\(BASE_URL)user/add"
 let URL_USER_BY_EMAIL = "\(BASE_URL)user/byEmail/"
+let URL_GET_CHANNELS = "\(BASE_URL)/channel/"
 
 // Colors
 let SMACK_PURPLE_PLACE_HOLDER = #colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 0.5) //this is going to be for the color of the placeHolder text in the CreateAccountVC

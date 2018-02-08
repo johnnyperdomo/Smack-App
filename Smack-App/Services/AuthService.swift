@@ -6,6 +6,7 @@
 //  Copyright © 2018 Johnny Perdomo. All rights reserved.
 //
 
+//this is to hold all the information that is required to log into an account and save passwords
 import Foundation
 import Alamofire
 import SwiftyJSON

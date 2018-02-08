@@ -26,5 +26,11 @@ class ChatVC: UIViewController {
                 NotificationCenter.default.post(name: NOTIFICATION_USER_DATA_DID_CHANGE, object: nil) //if loggedin is true, we will send a notification to everyone
             })
         }
+        
+        if AuthService.instance.isLoggedIn {
+            MessageService.instance.findAllChannel { (success) in
+                
+            }
+        }
     }
 }
