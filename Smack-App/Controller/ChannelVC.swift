@@ -24,6 +24,10 @@ class ChannelVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIFICATION_USER_DATA_DID_CHANGE, object: nil) //this observes whenever the notification is posted
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        setupUserInfo()
+    }
+    
     @IBAction func loginBtnPressed(_ sender: Any) {
         if AuthService.instance.isLoggedIn { //if logged in, show the profile page when clicking on button
             let profile = ProfileVC() //this is to present the profileVC since its a xib file, but not on story board
@@ -36,6 +40,10 @@ class ChannelVC: UIViewController {
     }
     
      @objc func userDataDidChange(_ notification: Notification) { //if notification is posted and we receive it, we will call this function as stated above
+       setupUserInfo()
+     }
+    
+    func setupUserInfo() {
         if AuthService.instance.isLoggedIn { //if we logged in successfully it should show up in the channel vc
             loginBtn.setTitle(UserDataService.instance.name, for: .normal) // it should set our name
             userImg.image = UIImage(named: UserDataService.instance.avatarName) //it should show what avatar we picked

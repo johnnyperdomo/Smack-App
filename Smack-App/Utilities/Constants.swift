@@ -15,6 +15,7 @@ let BASE_URL = "https://chatexample1.herokuapp.com/v1/" //this is the url to whe
 let URL_REGISTER = "\(BASE_URL)account/register" //url for specific api location, so api what to do with this information
 let URL_LOGIN = "\(BASE_URL)account/login"
 let URL_USER_ADD = "\(BASE_URL)user/add"
+let URL_USER_BY_EMAIL = "\(BASE_URL)user/byEmail/"
 
 // Colors
 let SMACK_PURPLE_PLACE_HOLDER = #colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 0.5) //this is going to be for the color of the placeHolder text in the CreateAccountVC
@@ -38,5 +39,10 @@ let USER_EMAIL = "userEmail"
 
 let HEADER = [
     "Content-Type": "application/json; charset = utf-8" //web requests usually need a header, this is what it consists of
+]
+
+let BEARER_HEADER = [
+    "Authorization": "Bearer \(AuthService.instance.authToken)",
+    "Content-Type": "application/json; charset = utf-8" //this holds the authToken
 ]
 

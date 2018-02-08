@@ -198,7 +198,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="3F4-DV-U2I">
                                 <rect key="frame" x="62.5" y="160" width="250" height="86"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uWd-pt-fwR">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uWd-pt-fwR" userLabel="EmailTxt">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="GHq-B8-mSe"/>
@@ -250,13 +250,21 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginPressed:" destination="icF-g7-GMB" eventType="touchUpInside" id="Fvr-lN-0GU"/>
+                                </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Z5e-BR-Xj1">
+                                <rect key="frame" x="169" y="215" width="37" height="37"/>
+                                <color key="color" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3F4-DV-U2I" firstAttribute="centerX" secondItem="ksM-KL-eAa" secondAttribute="centerX" id="CCh-2m-ima"/>
                             <constraint firstItem="DpH-cf-sr3" firstAttribute="top" secondItem="8KO-2z-4hP" secondAttribute="bottom" constant="8" id="D6h-e9-O8p"/>
                             <constraint firstItem="CCg-dZ-Nrp" firstAttribute="centerX" secondItem="ksM-KL-eAa" secondAttribute="centerX" id="Ei0-wr-gUA"/>
+                            <constraint firstItem="Z5e-BR-Xj1" firstAttribute="centerY" secondItem="ksM-KL-eAa" secondAttribute="centerY" constant="-100" id="Mtm-WH-Nwe"/>
                             <constraint firstItem="sIK-9H-h8t" firstAttribute="top" secondItem="3F4-DV-U2I" secondAttribute="bottom" constant="40" id="ZP6-pL-Knc"/>
                             <constraint firstItem="Lg8-aV-iOn" firstAttribute="top" secondItem="8KO-2z-4hP" secondAttribute="bottom" constant="60" id="fQ0-yT-hu1"/>
                             <constraint firstItem="sIK-9H-h8t" firstAttribute="centerX" secondItem="ksM-KL-eAa" secondAttribute="centerX" id="j57-l7-cvE"/>
@@ -264,9 +272,13 @@
                             <constraint firstItem="CCg-dZ-Nrp" firstAttribute="top" secondItem="sIK-9H-h8t" secondAttribute="bottom" id="mKP-NJ-Aau"/>
                             <constraint firstItem="DpH-cf-sr3" firstAttribute="trailing" secondItem="ksM-KL-eAa" secondAttribute="trailingMargin" id="tgB-4F-fox"/>
                             <constraint firstItem="3F4-DV-U2I" firstAttribute="top" secondItem="Lg8-aV-iOn" secondAttribute="bottom" constant="40" id="wZB-pQ-iCt"/>
+                            <constraint firstItem="Z5e-BR-Xj1" firstAttribute="centerX" secondItem="ksM-KL-eAa" secondAttribute="centerX" id="y5J-Cl-rqu"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailTxt" destination="uWd-pt-fwR" id="u3K-Ni-GIN"/>
+                        <outlet property="passwordTxt" destination="SG8-ox-T9s" id="wmS-NX-tpe"/>
+                        <outlet property="spinner" destination="Z5e-BR-Xj1" id="b6I-4R-82v"/>
                         <segue destination="vJy-Y9-bXW" kind="show" identifier="toCreateAccount" id="cWS-fT-5Sf"/>
                     </connections>
                 </viewController>
