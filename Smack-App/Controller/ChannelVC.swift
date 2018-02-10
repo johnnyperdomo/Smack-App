@@ -9,16 +9,21 @@
 //this is for the channel VC that slides out
 import UIKit
 
-class ChannelVC: UIViewController {
+class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var userImg: CircleImage!
+    @IBOutlet weak var tableView: UITableView!
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {}
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 60 //this is the width of the reveal view when its open..../{the rear view should take all of the screen size, except 60 points}
         
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIFICATION_USER_DATA_DID_CHANGE, object: nil) //this observes whenever the notification is posted
@@ -55,4 +60,28 @@ class ChannelVC: UIViewController {
         }
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell", for: indexPath) as? ChannelCell {
+        let channel = MessageService.instance.channels[indexPath.row]
+        cell.configureCell(channel: channel)
+        return cell
+    } else {
+        return UITableViewCell()  //if it doesn't return cells, show an empty table
+        }
+    }
+        func numberOfSections(in tableView: UITableView) -> Int {
+            return 1
+        }
+        
+        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MessageService.instance.channels.count
+    }
+
+
 }
+        
+
+
+        
+

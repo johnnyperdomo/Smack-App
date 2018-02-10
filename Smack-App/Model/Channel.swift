@@ -9,7 +9,7 @@
 //this is to return whatever channel we choose
 import Foundation
 
-struct Channel  {
+struct Channel {
     
     public private(set) var channelTitle: String! //information about the channel
     public private(set) var channelDescription: String!

@@ -20,6 +20,7 @@
 		FE3D5DB51FFC837200B17B10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3D5DB31FFC837200B17B10 /* Main.storyboard */; };
 		FE3D5DB71FFC837200B17B10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE3D5DB61FFC837200B17B10 /* Assets.xcassets */; };
 		FE3D5DBA1FFC837200B17B10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3D5DB81FFC837200B17B10 /* LaunchScreen.storyboard */; };
+		FE445580202E8F84008E3B25 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44557F202E8F84008E3B25 /* ChannelCell.swift */; };
 		FE449BC9200AFDC100325399 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE449BC8200AFDC100325399 /* ChatVC.swift */; };
 		FE449BCB200AFDD600325399 /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE449BCA200AFDD600325399 /* ChannelVC.swift */; };
 		FE55C82720165CBF000379A8 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE55C82620165CBF000379A8 /* UserDataService.swift */; };
@@ -49,6 +50,7 @@
 		FE3D5DB61FFC837200B17B10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE3D5DB91FFC837200B17B10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE3D5DBB1FFC837200B17B10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE44557F202E8F84008E3B25 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		FE449BC8200AFDC100325399 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		FE449BCA200AFDD600325399 /* ChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelVC.swift; sourceTree = "<group>"; };
 		FE55C82620165CBF000379A8 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				FEE8E0622011ABBA008EFC8D /* RoundedButton.swift */,
 				FE288B7C2016AFF60059CB54 /* AvatarCell.swift */,
 				FE5F5D2F20194DE900339846 /* CircleImage.swift */,
+				FE44557F202E8F84008E3B25 /* ChannelCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE0CE810201E41B6006B6BDE /* ProfileVC.swift in Sources */,
+				FE445580202E8F84008E3B25 /* ChannelCell.swift in Sources */,
 				FE449BCB200AFDD600325399 /* ChannelVC.swift in Sources */,
 				FE288B7B2016AD2B0059CB54 /* AvatarPickerVC.swift in Sources */,
 				FEE8E0632011ABBA008EFC8D /* RoundedButton.swift in Sources */,
