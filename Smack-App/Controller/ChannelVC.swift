@@ -33,6 +33,13 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         setupUserInfo()
     }
     
+    @IBAction func addChannelPressed(_ sender: Any) {
+        let addChannel = AddChannelVC() //to instantiate VC
+        addChannel.modalPresentationStyle = .custom //lets us present it the custom way we did it 
+        present(addChannel, animated: true, completion: nil) //to present it
+        
+    }
+    
     @IBAction func loginBtnPressed(_ sender: Any) {
         if AuthService.instance.isLoggedIn { //if logged in, show the profile page when clicking on button
             let profile = ProfileVC() //this is to present the profileVC since its a xib file, but not on story board

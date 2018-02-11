@@ -36,7 +36,7 @@ class MessageService {
                     completion(true)
                 }
                 
-                print(self.channels[0].channelTitle)
+                print(self.channels)
                 
                 
             } else {
