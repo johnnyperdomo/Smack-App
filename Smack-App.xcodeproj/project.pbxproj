@@ -24,6 +24,7 @@
 		FE449BC9200AFDC100325399 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE449BC8200AFDC100325399 /* ChatVC.swift */; };
 		FE449BCB200AFDD600325399 /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE449BCA200AFDD600325399 /* ChannelVC.swift */; };
 		FE55C82720165CBF000379A8 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE55C82620165CBF000379A8 /* UserDataService.swift */; };
+		FE5BD9D720352D9B00145764 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5BD9D620352D9B00145764 /* SocketService.swift */; };
 		FE5F5D3020194DE900339846 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5F5D2F20194DE900339846 /* CircleImage.swift */; };
 		FE9D891820066E72009F9CB1 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9D891720066E72009F9CB1 /* SWRevealViewController.m */; };
 		FECB68F1202D00CC009EEDCD /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB68F0202D00CC009EEDCD /* MessageService.swift */; };
@@ -56,6 +57,7 @@
 		FE449BC8200AFDC100325399 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		FE449BCA200AFDD600325399 /* ChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelVC.swift; sourceTree = "<group>"; };
 		FE55C82620165CBF000379A8 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
+		FE5BD9D620352D9B00145764 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		FE5F5D2F20194DE900339846 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		FE9D891520066E6F009F9CB1 /* Smack-App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smack-App-Bridging-Header.h"; sourceTree = "<group>"; };
 		FE9D891620066E71009F9CB1 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				FEE8E06020115EF9008EFC8D /* AuthService.swift */,
 				FE55C82620165CBF000379A8 /* UserDataService.swift */,
 				FECB68F0202D00CC009EEDCD /* MessageService.swift */,
+				FE5BD9D620352D9B00145764 /* SocketService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -286,13 +289,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Smack-App-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8D0C294E5ED09817C8C8A6DE /* [CP] Copy Pods Resources */ = {
@@ -316,9 +322,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Smack-App/Pods-Smack-App-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -332,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE5BD9D720352D9B00145764 /* SocketService.swift in Sources */,
 				FE0CE810201E41B6006B6BDE /* ProfileVC.swift in Sources */,
 				FE445580202E8F84008E3B25 /* ChannelCell.swift in Sources */,
 				FE449BCB200AFDD600325399 /* ChannelVC.swift in Sources */,
