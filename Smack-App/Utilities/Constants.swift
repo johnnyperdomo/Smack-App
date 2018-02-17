@@ -23,6 +23,9 @@ let SMACK_PURPLE_PLACE_HOLDER = #colorLiteral(red: 0.5818830132, green: 0.215691
 
 //Notification
 let NOTIFICATION_USER_DATA_DID_CHANGE = Notification.Name("notificationUserDataChanged") //to send a notification depending on whether you log in/out
+let NOTIFICATION_CHANNELS_LOADED = Notification.Name("channelsLoaded") //to send a notification depending on whether you log in to retrieve channels
+let NOTIFICATION_CHANNEL_SELECTED = Notification.Name("channelSelected") //to send a notif when i choose a channel
+
 
 //segues
 let TO_LOGIN = "toLogin" //this sets a constant to the segue we need for the LoginVC from the ChannelVC

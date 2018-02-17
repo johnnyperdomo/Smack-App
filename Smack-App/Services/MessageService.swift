@@ -17,8 +17,9 @@ class MessageService {
     static let instance = MessageService() //singleton
     
     var channels = [Channel]() //this gets the objects from the "Channels" file, found in the Model group
+    var selectedChannel : Channel? //optional bcuz if were not logged in, we wont have a selected channel
     
-    func findAllChannel(completion: @escaping CompletionHandler) {
+    func findAllChannel(completion: @escaping CompletionHandler) { //to find channels
         Alamofire.request(URL_GET_CHANNELS, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             
             if response.result.error == nil {
@@ -32,13 +33,12 @@ class MessageService {
                         let channel = Channel(channelTitle: name, channelDescription: channelDescription, id: id) //this initializes a new channel object,
                         self.channels.append(channel) //then add this new channel into "channels" array
                     }
-                    
+                    NotificationCenter.default.post(name: NOTIFICATION_CHANNELS_LOADED, object: nil) //sends a notif that channels are ready to be loaded
                     completion(true)
                 }
                 
                 print(self.channels)
-                
-                
+
             } else {
                 completion(false)
                 debugPrint(response.result.error as Any)
@@ -46,5 +46,10 @@ class MessageService {
             
         }
     }
+    
+    func clearChannels() {
+        channels.removeAll() //to clear the channels once we log out
+    }
+    
     
 }
