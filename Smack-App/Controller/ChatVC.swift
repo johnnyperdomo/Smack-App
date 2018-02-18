@@ -47,13 +47,50 @@ class ChatVC: UIViewController {
     func updateWithChannel() { //to update the title of the view according to the channel we selected
         let channelName = MessageService.instance.selectedChannel?.channelTitle ?? "" //set the channelName, if it can't unwrap, set the channelName to an empty string.
         channelNameLbl.text = "#\(channelName)" //to change the text of the Lbl, set it to the channelName so it can update
+        getMessages() //call the function 
     }
     
     func onLoginGetMessages() { //to get messages once were logged in 
-        MessageService.instance.findAllChannel { (success) in
+        MessageService.instance.findAllChannel { (success) in //this will find all channels once we log in, so we can see them
             if success{
-                //Do Stuff with channels
+                if MessageService.instance.channels.count > 0 { //this is to check if there are channels, atleast 1. if there isnt, theres no point in calling this function
+                    MessageService.instance.selectedChannel = MessageService.instance.channels[0] //this is if you re-enter the app, this will set the selected channel, as the first channel in the tableView
+                    self.updateWithChannel() //update channel title
+                } else {
+                    self.channelNameLbl.text = "No channels yet!" //if theres no channel, this will set a new title to the channel of the view
+                }
             }
         }
     }
+    
+    func getMessages() {
+        guard let channelId = MessageService.instance.selectedChannel?.id else { return } //to unwrap the channel id. this is what we need to call messages
+        MessageService.instance.findAllMessagesForChannel(channelId: channelId) { (success) in
+            
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -17,6 +17,7 @@ class MessageService {
     static let instance = MessageService() //singleton
     
     var channels = [Channel]() //this gets the objects from the "Channels" file, found in the Model group
+    var messages = [Message]() //when we create a new message, we'll append to an array of messages
     var selectedChannel : Channel? //optional bcuz if were not logged in, we wont have a selected channel
     
     func findAllChannel(completion: @escaping CompletionHandler) { //to find channels
@@ -47,9 +48,67 @@ class MessageService {
         }
     }
     
+    func findAllMessagesForChannel(channelId: String, completion: @escaping CompletionHandler) { //to find messages for the channel we choose
+        Alamofire.request("\(URL_GET_MESSAGES)\(channelId)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+            
+            if response.result.error == nil {
+                self.clearMessages() //to clear messages from the channel once we choose different channels
+                
+                guard let data = response.data else { return } //json parsing to get messages from API
+                if let json = try! JSON(data: data).array {
+                    for item in json { //creating a for loop to go through all the message objects and check for all the things it needs and extracts the properties for each object
+                        let messageBody = item["messageBody"].stringValue //this is the object its extracting the properties from.
+                        let channelId = item["channelId"].stringValue //this will loop through all these objects until its done
+                        let id = item["_id"].stringValue
+                        let userName = item["userName"].stringValue
+                        let userAvatar = item["userAvatar"].stringValue
+                        let userAvatarColor = item["userAvatarColor"].stringValue
+                        let timeStamp = item["timeStamp"].stringValue
+                        
+                        let message = Message(message: messageBody, userName: userName, channelId: channelId, userAvatar: userAvatar, userAvatarColor: userAvatarColor, id: id, timeStamp: timeStamp) //creating a new message object
+                        self.messages.append(message) //this adds it to the message Array
+                        
+                    }
+                    print(self.messages)
+                    completion(true)
+                    
+                }
+                
+            } else {
+                debugPrint(response.result.error as Any)
+                completion(false)
+            }
+            
+        }
+        
+    }
+    
+    func clearMessages() { //to clear messages
+        messages.removeAll()
+    }
+    
+    
     func clearChannels() {
         channels.removeAll() //to clear the channels once we log out
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }
