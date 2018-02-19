@@ -49,6 +49,12 @@ class SocketService: NSObject { //nsobject is the base class for most objc objec
     }
     
     
+    func addMessage(messageBody: String, userId: String, ChannelId: String, completion: @escaping CompletionHandler) { //to add a message, and including the personal ids it needs
+        let user = UserDataService.instance //to make a shortcut
+        socket.emit("newMessage", messageBody, userId, ChannelId, user.name, user.avatarName, user.avatarColor) //we send message to API
+        completion(true)
+    }
+    
     
     
     

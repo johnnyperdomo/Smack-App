@@ -13,10 +13,13 @@ class ChatVC: UIViewController {
 
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var channelNameLbl: UILabel!
+    @IBOutlet weak var messageTxtBox: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.bindToKeyboard() //this is the function that allows you to bind your view to the keyboard
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ChatVC.handleTap)) //to dismiss the keyboard that we're typing on
+        view.addGestureRecognizer(tap) //to add it
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside) //#selector is method that we get from another file, target is the revealviewcontroller, .touchupinside is the ui controller event
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer()) //this is to slide the Rear VC to ChatVC by dragging your finger across screen...it came with the SWReveal Code
@@ -44,11 +47,35 @@ class ChatVC: UIViewController {
         updateWithChannel() //call the function
     }
     
+    @objc func handleTap() { //to dismiss the keyboard when were done typing
+        view.endEditing(true)
+    }
+    
     func updateWithChannel() { //to update the title of the view according to the channel we selected
         let channelName = MessageService.instance.selectedChannel?.channelTitle ?? "" //set the channelName, if it can't unwrap, set the channelName to an empty string.
         channelNameLbl.text = "#\(channelName)" //to change the text of the Lbl, set it to the channelName so it can update
         getMessages() //call the function 
     }
+    
+    
+    
+    //actions
+    @IBAction func sendMessagePressed(_ sender: Any) {
+        if AuthService.instance.isLoggedIn { //to check if we're logged in
+            guard let channelId = MessageService.instance.selectedChannel?.id else { return } //to ensure what channel we're on
+            guard let message = messageTxtBox.text else { return } //the message itself
+            
+            SocketService.instance.addMessage(messageBody: message, userId: UserDataService.instance.id, ChannelId: channelId, completion: { (success) in
+                if success {
+                    self.messageTxtBox.text = "" //to make the txtbox blank again
+                    self.messageTxtBox.resignFirstResponder() //to dismiss keyboard
+                }
+            })
+        }
+    }
+    
+    //
+    
     
     func onLoginGetMessages() { //to get messages once were logged in 
         MessageService.instance.findAllChannel { (success) in //this will find all channels once we log in, so we can see them
@@ -63,28 +90,13 @@ class ChatVC: UIViewController {
         }
     }
     
+    
     func getMessages() {
         guard let channelId = MessageService.instance.selectedChannel?.id else { return } //to unwrap the channel id. this is what we need to call messages
         MessageService.instance.findAllMessagesForChannel(channelId: channelId) { (success) in
             
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
