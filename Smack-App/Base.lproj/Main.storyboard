@@ -612,6 +612,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="messageBoxEditing:" destination="Bvw-HV-6V9" eventType="editingChanged" id="HhK-Xh-nyY"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7r-wr-A34">
                                 <rect key="frame" x="337" y="632" width="30" height="30"/>
@@ -700,6 +703,7 @@
                         <outlet property="channelNameLbl" destination="tuA-Yj-exa" id="GuR-sf-Dl4"/>
                         <outlet property="menuBtn" destination="eGF-Dq-rgg" id="PRd-Gu-vef"/>
                         <outlet property="messageTxtBox" destination="c1k-27-hDw" id="2zZ-Mh-KJ9"/>
+                        <outlet property="sendBtn" destination="x7r-wr-A34" id="u0F-Ma-BK7"/>
                         <outlet property="tableView" destination="Nql-ZQ-D07" id="tfk-mq-So9"/>
                     </connections>
                 </viewController>

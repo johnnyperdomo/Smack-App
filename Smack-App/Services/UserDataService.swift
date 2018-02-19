@@ -80,6 +80,7 @@ class UserDataService {
         AuthService.instance.userEmail = ""
         AuthService.instance.authToken = ""
         MessageService.instance.clearChannels() //to clear channels when we log out
+        MessageService.instance.clearMessages() //to clear messages once we log out
     }
     
     

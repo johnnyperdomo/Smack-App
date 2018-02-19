@@ -36,7 +36,7 @@ class SocketService: NSObject { //nsobject is the base class for most objc objec
     }
     
     func getChannel(completion: @escaping CompletionHandler) {
-        socket.on("channelCreated") { (dataArray, ack) in //listens for a new chat message
+        socket.on("channelCreated") { (dataArray, ack) in //listens for a new channel
             guard let channelName = dataArray[0] as? String else { return }
             guard let channelDescription = dataArray[1] as? String else { return }
             guard let channelId = dataArray[2] as? String else { return }
@@ -55,7 +55,26 @@ class SocketService: NSObject { //nsobject is the base class for most objc objec
         completion(true)
     }
     
-    
+    func getChatMessage(completion: @escaping CompletionHandler) { //to get chat messages, listening to event
+        socket.on("messageCreated") { (dataArray, ack) in //if we receive it, we get with it a data Array
+            guard let msgBody = dataArray[0] as? String else { return } //parse through these values
+            guard let channelId = dataArray[2] as? String else { return }
+            guard let userName = dataArray[3] as? String else { return }
+            guard let userAvatar = dataArray[4] as? String else { return }
+            guard let userAvatarColor = dataArray[5] as? String else { return }
+            guard let id = dataArray[6] as? String else { return }
+            guard let timeStamp = dataArray[7] as? String else { return }
+            
+            if channelId == MessageService.instance.selectedChannel?.id && AuthService.instance.isLoggedIn { //to check whether we're logged in and if we're on the correct channel where the message is being sent to
+                
+                let newMessage = Message(message: msgBody, userName: userName, channelId: channelId, userAvatar: userAvatar, userAvatarColor: userAvatarColor, id: id, timeStamp: timeStamp)
+                MessageService.instance.messages.append(newMessage) //append what we just created
+                completion(true)
+            } else {
+                completion(false) //if it don't work, don't do anything
+            }
+        }
+    }
     
     
     
