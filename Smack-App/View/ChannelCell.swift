@@ -32,14 +32,14 @@ class ChannelCell: UITableViewCell {
     }
     
     func configureCell(channel: Channel) {
-    
         let title = channel.channelTitle ?? "" //nil coalescing, if cant find title, show empty string
         channelName.text = "#\(title)"
+        channelName.font = UIFont(name: "HelveticaNeue-Regular", size: 17) // defaults fonts
         
+        for id in MessageService.instance.unreadChannels { //loop through the unreadChannelIds with our channel id's to see which ones match, match = unread channel
+            if id == channel.id { // if the id is the same, to make the font bold and bigger if its unread channel
+                channelName.font = UIFont(name: "HelveticaNeue-Bold", size: 22)
+            }
+        }
     }
-    
-    
-    
-    
-
 }

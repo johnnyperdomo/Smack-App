@@ -55,7 +55,7 @@ class SocketService: NSObject { //nsobject is the base class for most objc objec
         completion(true)
     }
     
-    func getChatMessage(completion: @escaping CompletionHandler) { //to get chat messages, listening to event
+    func getChatMessage(completion: @escaping (_ newMessage: Message) -> Void) { //to get chat messages, listening to event
         socket.on("messageCreated") { (dataArray, ack) in //if we receive it, we get with it a data Array
             guard let msgBody = dataArray[0] as? String else { return } //parse through these values
             guard let channelId = dataArray[2] as? String else { return }
@@ -65,14 +65,9 @@ class SocketService: NSObject { //nsobject is the base class for most objc objec
             guard let id = dataArray[6] as? String else { return }
             guard let timeStamp = dataArray[7] as? String else { return }
             
-            if channelId == MessageService.instance.selectedChannel?.id && AuthService.instance.isLoggedIn { //to check whether we're logged in and if we're on the correct channel where the message is being sent to
-                
-                let newMessage = Message(message: msgBody, userName: userName, channelId: channelId, userAvatar: userAvatar, userAvatarColor: userAvatarColor, id: id, timeStamp: timeStamp)
-                MessageService.instance.messages.append(newMessage) //append what we just created
-                completion(true)
-            } else {
-                completion(false) //if it don't work, don't do anything
-            }
+            let newMessage = Message(message: msgBody, userName: userName, channelId: channelId, userAvatar: userAvatar, userAvatarColor: userAvatarColor, id: id, timeStamp: timeStamp)
+            
+            completion(newMessage) //passes into the closure completion handler, instead of just true or false, it adds a message
         }
     }
     

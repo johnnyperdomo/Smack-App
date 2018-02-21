@@ -36,7 +36,16 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         
+        SocketService.instance.getChatMessage { (newMessage) in //we want to see notifications for channels we are not in
+            if newMessage.channelId != MessageService.instance.selectedChannel?.id && AuthService.instance.isLoggedIn { //if the newMessage does not equal the selected channel when we're logged in
+                MessageService.instance.unreadChannels.append(newMessage.channelId) //append to the unread channels dictionary
+                self.tableView.reloadData()
+            }
+        }
+        
+        
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         setupUserInfo()
@@ -105,6 +114,16 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let channel = MessageService.instance.channels[indexPath.row] //choose our channel and set it.
         MessageService.instance.selectedChannel = channel //set the selected channel
+        
+        
+        if MessageService.instance.unreadChannels.count > 0 { //if there are unread channels, we want this function to put the font back to normal once we click on it
+            MessageService.instance.unreadChannels = MessageService.instance.unreadChannels.filter{$0 != channel.id} //equal to itself, but filter out the one we clicked on
+            
+        }
+        let index = IndexPath(row: indexPath.row, section: 0) //reload it so that its not an unread channel
+        tableView.reloadRows(at: [index], with: .none)
+        tableView.selectRow(at: index, animated: false, scrollPosition: .none) //shows it as a normal channel
+        
         NotificationCenter.default.post(name: NOTIFICATION_CHANNEL_SELECTED, object: nil) //then it posts a notif letting the system know you chose a channel
         
         self.revealViewController().revealToggle(animated: true) //to slide the menu back and hide it.

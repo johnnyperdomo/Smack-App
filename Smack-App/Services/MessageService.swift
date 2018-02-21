@@ -18,6 +18,7 @@ class MessageService {
     
     var channels = [Channel]() //this gets the objects from the "Channels" file, found in the Model group
     var messages = [Message]() //when we create a new message, we'll append to an array of messages
+    var unreadChannels = [String]() //this is where we're gonna put the channelid of ourunread channels
     var selectedChannel : Channel? //optional bcuz if were not logged in, we wont have a selected channel
     
     func findAllChannel(completion: @escaping CompletionHandler) { //to find channels

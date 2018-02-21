@@ -44,13 +44,17 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.userDataDidChange(_:)), name: NOTIFICATION_USER_DATA_DID_CHANGE, object: nil) //adding an observer
         NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.channelSelected(_:)), name: NOTIFICATION_CHANNEL_SELECTED, object: nil) //observer, call the channelSelected function
     
-        SocketService.instance.getChatMessage { (success) in //to run the function to get the chat message
-            self.tableView.reloadData()
-            if MessageService.instance.messages.count > 0 { //to check whether we have messages and scrolls down to the latest one
-                let endIndex = IndexPath(row: MessageService.instance.messages.count - 1, section: 0) //index for the row
-                self.tableView.scrollToRow(at: endIndex, at: .bottom, animated: false) //scrolls to bottom, latest message
+        SocketService.instance.getChatMessage { (newMessage) in //to run the function to get the chat message
+            if newMessage.channelId == MessageService.instance.selectedChannel?.id && AuthService.instance.isLoggedIn { //if message is in the same channel and the user is logged in
+                MessageService.instance.messages.append(newMessage) //add message
+                self.tableView.reloadData()
+                if MessageService.instance.messages.count > 0  { //to check whether we have messages and scrolls down to the latest one
+                    let endIndex = IndexPath(row: MessageService.instance.messages.count - 1, section: 0) //index for the row
+                    self.tableView.scrollToRow(at: endIndex, at: .bottom, animated: false) //scrolls to bottom, latest message
+                }
             }
         }
+        
         
         SocketService.instance.getTypingUsers { (typingUsers) in //to check whether someone is typing
             guard let channelId = MessageService.instance.selectedChannel?.id else { return } //to check whether the user is on the right channel
