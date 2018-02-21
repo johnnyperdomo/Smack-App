@@ -76,7 +76,14 @@ class SocketService: NSObject { //nsobject is the base class for most objc objec
         }
     }
     
-    
+    func getTypingUsers(_ completionHandler: @escaping (_ typingUsers: [String: String]) -> Void) { //function to see which users are typing
+        
+        socket.on("userTypingUpdate") { (dataArray, ack) in
+            guard let typingUsers = dataArray[0] as? [String: String] else { return } //we are making a dictionary of names
+            completionHandler(typingUsers)
+        }
+        
+    }
     
     
     

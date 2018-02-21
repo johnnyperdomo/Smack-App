@@ -17,6 +17,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var messageTxtBox: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sendBtn: UIButton!
+    @IBOutlet weak var typingUsersLbl: UILabel!
     
     
     //Variables
@@ -51,6 +52,32 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         
+        SocketService.instance.getTypingUsers { (typingUsers) in //to check whether someone is typing
+            guard let channelId = MessageService.instance.selectedChannel?.id else { return } //to check whether the user is on the right channel
+            var names = "" //name of the user
+            var numberOfTypers = 0
+            
+            for (typingUser, channel) in typingUsers {
+                if typingUser != UserDataService.instance.name && channel == channelId { //if not us
+                    if names == "" { //if there's no one in the dictionary, or its their first time
+                        names = typingUser
+                    } else {
+                        names = "\(names), \(typingUser)" //if more than one person is typing
+                    }
+                    numberOfTypers += 1
+                }
+            }
+            
+            if numberOfTypers > 0 && AuthService.instance.isLoggedIn == true { //if we're logged in, and there are atleast 1 typer
+                var verb = "is" //for 1 person typing
+                if numberOfTypers > 1 {
+                    verb = "are" //for multiple people typing
+                }
+                self.typingUsersLbl.text = "\(names) \(verb) typing a message..." //will show user/users typing
+            } else {
+                self.typingUsersLbl.text = "" //if not, it'll be empty
+            }
+        }
         
         if AuthService.instance.isLoggedIn { //this is a check in the system
             AuthService.instance.findUserByEmail(completion: { (success) in
@@ -87,12 +114,15 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //actions
     
     @IBAction func messageBoxEditing(_ sender: Any) { //to show or hide send btn based on whether we are typing or not
+        guard let channelId = MessageService.instance.selectedChannel?.id else { return }
         if messageTxtBox.text == "" {
             isTyping = false
             sendBtn.isHidden = true
+            SocketService.instance.socket.emit("stopType", UserDataService.instance.name, channelId)
         } else {
             if isTyping == false {
                 sendBtn.isHidden = false
+                SocketService.instance.socket.emit("startType", UserDataService.instance.name, channelId)
             }
             
             isTyping = true
@@ -109,6 +139,8 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if success {
                     self.messageTxtBox.text = "" //to make the txtbox blank again
                     self.messageTxtBox.resignFirstResponder() //to dismiss keyboard
+                    SocketService.instance.socket.emit("stopType", UserDataService.instance.name, channelId) //if sendmessage is pressed, stop typing
+                    self.sendBtn.isHidden = true //will hide sendbtn when we click on it 
                 }
             })
         }
